@@ -24,6 +24,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+          pip install pyinstaller
 
       - name: Build application
         run: |
@@ -34,8 +35,19 @@ jobs:
             --add-data "models:models" \
             main.py
 
-      - name: Upload macOS application
+      - name: Create final package
+        run: |
+          mkdir package
+
+          cp -R "dist/Untuk-Caca.app" package/
+          cp "BUKA_AKU.txt" package/
+
+          cd package
+
+          zip -r "../Untuk-Caca-Package.zip" .
+
+      - name: Upload final package
         uses: actions/upload-artifact@v4
         with:
-          name: Untuk-Caca-macOS
-          path: dist/Untuk-Caca.app
+          name: Untuk-Caca-Package
+          path: Untuk-Caca-Package.zip
