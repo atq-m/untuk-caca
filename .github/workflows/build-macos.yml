@@ -40,7 +40,7 @@ jobs:
           mkdir package
 
           cp -R "dist/Untuk-Caca.app" package/
-          cp "BUKA_AKU.txt" package/
+          cp "BACA_INI_DULU.txt" package/
 
           cd package
 
