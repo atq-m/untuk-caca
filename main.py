@@ -16,10 +16,14 @@ import sys
 
 
 def resource_path(relative_path):
-    try:
+    """
+    Mengambil path resource baik saat program dijalankan
+    sebagai source code maupun sebagai aplikasi PyInstaller.
+    """
+    if getattr(sys, "frozen", False) and hasattr(sys, "_MEIPASS"):
         base_path = sys._MEIPASS
-    except AttributeError:
-        base_path = os.path.abspath(".")
+    else:
+        base_path = os.path.dirname(os.path.abspath(__file__))
 
     return os.path.join(base_path, relative_path)
 
@@ -72,7 +76,7 @@ small_font = ImageFont.truetype(
 )
 
 answer_font = ImageFont.truetype(
-    "fonts/text.ttf",
+    resource_path("fonts/text.ttf"),
     22
 )
 
