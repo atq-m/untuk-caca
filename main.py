@@ -81,7 +81,7 @@ answer_font = ImageFont.truetype(
 )
 
 answer_title_font = ImageFont.truetype(
-    "fonts/accent.ttf",
+    resource_path("fonts/accent.ttf"),
     42
 )
 
